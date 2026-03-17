@@ -1,0 +1,44 @@
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Archivos de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Archivos de reportes (si no quieres subirlos)
+# reports/*.json
+# reports/*.txt
+
+# Archivos de instaladores
+*.deb
+*.rpm
+*.dmg
+*.exe
+
+# Archivos comprimidos
+*.zip
+*.tar.gz
+*.rar
+
+# Archivos de configuración local
+.env
+.vscode/
+.idea/
+*.bak
+
+# Archivos de GitHub CLI (el que tienes en reports)
+gh_*.deb
+
+# Entornos virtuales (si usas alguno)
+venv/
+env/
+ENV/

@@ -1,0 +1,111 @@
+{
+    "timestamp": "2026-03-17 17:19:18",
+    "hostname": "kali-linux",
+    "system": "Linux 6.12.38+kali-amd64",
+    "summary": {
+        "total": 14,
+        "passed": 8,
+        "failed": 6,
+        "error": 0
+    },
+    "controls": [
+        {
+            "id": "SSH-001",
+            "description": "Deshabilitar login root por SSH",
+            "status": "FAIL",
+            "severity": "high",
+            "remediation": "Editar /etc/ssh/sshd_config y establecer 'PermitRootLogin no'"
+        },
+        {
+            "id": "SSH-002",
+            "description": "Deshabilitar autenticaci\u00f3n por password",
+            "status": "FAIL",
+            "severity": "high",
+            "remediation": "Editar /etc/ssh/sshd_config y establecer 'PasswordAuthentication no'"
+        },
+        {
+            "id": "SSH-003",
+            "description": "Puerto SSH personalizado (no 22)",
+            "status": "FAIL",
+            "severity": "medium",
+            "remediation": "Cambiar el puerto SSH en /etc/ssh/sshd_config a uno no est\u00e1ndar"
+        },
+        {
+            "id": "SSH-004",
+            "description": "Protocolo SSH 2 solamente",
+            "status": "FAIL",
+            "severity": "high",
+            "remediation": "Establecer 'Protocol 2' en /etc/ssh/sshd_config"
+        },
+        {
+            "id": "FILE-001",
+            "description": "Permisos correctos en shadow",
+            "status": "PASS",
+            "severity": "high",
+            "remediation": ""
+        },
+        {
+            "id": "FILE-002",
+            "description": "Permisos correctos en passwd",
+            "status": "PASS",
+            "severity": "medium",
+            "remediation": ""
+        },
+        {
+            "id": "FILE-003",
+            "description": "Permisos correctos en sudoers",
+            "status": "PASS",
+            "severity": "high",
+            "remediation": ""
+        },
+        {
+            "id": "KERN-001",
+            "description": "Protecci\u00f3n contra IP spoofing",
+            "status": "FAIL",
+            "severity": "medium",
+            "remediation": "A\u00f1adir 'net.ipv4.conf.all.rp_filter=1' a /etc/sysctl.conf"
+        },
+        {
+            "id": "KERN-002",
+            "description": "Ignorar pings ICMP redirects",
+            "status": "FAIL",
+            "severity": "low",
+            "remediation": "A\u00f1adir 'net.ipv4.conf.all.accept_redirects=0' a /etc/sysctl.conf"
+        },
+        {
+            "id": "KERN-003",
+            "description": "Protecci\u00f3n contra SYN flood",
+            "status": "PASS",
+            "severity": "medium",
+            "remediation": ""
+        },
+        {
+            "id": "USER-001",
+            "description": "Usuarios sin contrase\u00f1a",
+            "status": "PASS",
+            "severity": "high",
+            "remediation": ""
+        },
+        {
+            "id": "USER-002",
+            "description": "UID duplicados",
+            "status": "PASS",
+            "severity": "medium",
+            "remediation": ""
+        },
+        {
+            "id": "SERV-001",
+            "description": "Servicios innecesarios (telnet)",
+            "status": "PASS",
+            "severity": "high",
+            "remediation": ""
+        },
+        {
+            "id": "SERV-002",
+            "description": "Servicios innecesarios (rlogin)",
+            "status": "PASS",
+            "severity": "high",
+            "remediation": ""
+        }
+    ]
+}

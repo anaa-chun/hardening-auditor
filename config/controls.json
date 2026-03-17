@@ -1,0 +1,110 @@
+{
+    "ssh_hardening": [
+        {
+            "id": "SSH-001",
+            "description": "Deshabilitar login root por SSH",
+            "check": "grep '^PermitRootLogin' /etc/ssh/sshd_config | grep -q 'no'",
+            "remediation": "Editar /etc/ssh/sshd_config y establecer 'PermitRootLogin no'",
+            "severity": "high"
+        },
+        {
+            "id": "SSH-002",
+            "description": "Deshabilitar autenticación por password",
+            "check": "grep '^PasswordAuthentication' /etc/ssh/sshd_config | grep -q 'no'",
+            "remediation": "Editar /etc/ssh/sshd_config y establecer 'PasswordAuthentication no'",
+            "severity": "high"
+        },
+        {
+            "id": "SSH-003",
+            "description": "Puerto SSH personalizado (no 22)",
+            "check": "grep '^Port' /etc/ssh/sshd_config | grep -v '22' | grep -q '[0-9]'",
+            "remediation": "Cambiar el puerto SSH en /etc/ssh/sshd_config a uno no estándar",
+            "severity": "medium"
+        },
+        {
+            "id": "SSH-004",
+            "description": "Protocolo SSH 2 solamente",
+            "check": "grep '^Protocol' /etc/ssh/sshd_config | grep -q '2'",
+            "remediation": "Establecer 'Protocol 2' en /etc/ssh/sshd_config",
+            "severity": "high"
+        }
+    ],
+    "file_permissions": [
+        {
+            "id": "FILE-001",
+            "description": "Permisos correctos en shadow",
+            "check": "stat -c '%a' /etc/shadow | grep -q '^640\\|^600'",
+            "remediation": "Ejecutar: chmod 640 /etc/shadow",
+            "severity": "high"
+        },
+        {
+            "id": "FILE-002",
+            "description": "Permisos correctos en passwd",
+            "check": "stat -c '%a' /etc/passwd | grep -q '^644'",
+            "remediation": "Ejecutar: chmod 644 /etc/passwd",
+            "severity": "medium"
+        },
+        {
+            "id": "FILE-003",
+            "description": "Permisos correctos en sudoers",
+            "check": "stat -c '%a' /etc/sudoers | grep -q '^440'",
+            "remediation": "Ejecutar: chmod 440 /etc/sudoers",
+            "severity": "high"
+        }
+    ],
+    "kernel_hardening": [
+        {
+            "id": "KERN-001",
+            "description": "Protección contra IP spoofing",
+            "check": "sysctl net.ipv4.conf.all.rp_filter | grep -q '= 1'",
+            "remediation": "Añadir 'net.ipv4.conf.all.rp_filter=1' a /etc/sysctl.conf",
+            "severity": "medium"
+        },
+        {
+            "id": "KERN-002",
+            "description": "Ignorar pings ICMP redirects",
+            "check": "sysctl net.ipv4.conf.all.accept_redirects | grep -q '= 0'",
+            "remediation": "Añadir 'net.ipv4.conf.all.accept_redirects=0' a /etc/sysctl.conf",
+            "severity": "low"
+        },
+        {
+            "id": "KERN-003",
+            "description": "Protección contra SYN flood",
+            "check": "sysctl net.ipv4.tcp_syncookies | grep -q '= 1'",
+            "remediation": "Añadir 'net.ipv4.tcp_syncookies=1' a /etc/sysctl.conf",
+            "severity": "medium"
+        }
+    ],
+    "users_groups": [
+        {
+            "id": "USER-001",
+            "description": "Usuarios sin contraseña",
+            "check": "! awk -F: '($2 == \"\") {print}' /etc/shadow | grep -q .",
+            "remediation": "Asignar contraseña o bloquear usuarios sin contraseña",
+            "severity": "high"
+        },
+        {
+            "id": "USER-002",
+            "description": "UID duplicados",
+            "check": "! awk -F: '{print $3}' /etc/passwd | sort | uniq -d | grep -q .",
+            "remediation": "Revisar y corregir UIDs duplicados en /etc/passwd",
+            "severity": "medium"
+        }
+    ],
+    "services": [
+        {
+            "id": "SERV-001",
+            "description": "Servicios innecesarios (telnet)",
+            "check": "! systemctl list-units --type=service --all 2>/dev/null | grep -q telnet",
+            "remediation": "Desinstalar o deshabilitar servicio telnet: apt remove telnetd",
+            "severity": "high"
+        },
+        {
+            "id": "SERV-002",
+            "description": "Servicios innecesarios (rlogin)",
+            "check": "! systemctl list-units --type=service --all 2>/dev/null | grep -q rlogin",
+            "remediation": "Desinstalar o deshabilitar servicio rlogin",
+            "severity": "high"
+        }
+    ]
+}
