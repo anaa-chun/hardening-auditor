@@ -1,4 +1,4 @@
-#!/usr/bin/env 
+#!/usr/bin/env python3
 """
 Hardening Auditor - Herramienta de auditoría de seguridad para Linux
 Author: Security Student
