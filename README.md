@@ -21,6 +21,8 @@
 └── reports/
     ├── audit_kali-linux_20260317_171918.json
     ├── audit_kali-linux_20260317_171918.txt
+    ├── audit_kali-linux_20260319_183553.json
+    ├── audit_kali-linux_20260319_183553.txt
 hardening-auditor.sh
 README.md
 requirements.txt 
@@ -88,3 +90,13 @@ Se verifica los reportes generados automáticamente por la herramienta después 
 ![Reporte TXT](images/8%20cat%20reports%20audit%20txt%20head%20-20.png) <br>
 Se muestra las primeras líneas del reporte TXT generado. Con esto se ve el hostname, sistema auditado, timestamp, resumen de resultados y los detalles de los primeros controles con sus estados y remediaciones.
 
+## Proof of Concept (PoC)
+Vídeo demostrativo del funcionamiento completo de la herramienta Hardening Auditor. <br>
+En el vídeo se puede observar:
+- Ejecución del script con privilegios de root
+- Evaluación automática de controles de seguridad
+- Resultados PASS/FAIL en tiempo real
+- Generación de reportes en formato JSON y TXT
+- Evidencia de funcionamiento en sistema Linux
+
+**Vídeo PoC →** [Hardening Auditor PoC | Auditoría de Seguridad en Linux con Shell](https://www.youtube.com/watch?v=XoqN14f6LH4)

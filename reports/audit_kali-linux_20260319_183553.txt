@@ -1,0 +1,39 @@
+======================================================================
+HARDENING AUDIT REPORT
+======================================================================
+
+Hostname: kali-linux
+System: Linux 6.12.38+kali-amd64
+Timestamp: 2026-03-19 18:35:53
+
+SUMMARY
+----------------------------------------------------------------------
+Total Controls: 14
+Passed: 10
+Failed: 4
+Errors: 0
+
+DETAILED RESULTS
+----------------------------------------------------------------------
+[PASS] SSH-001: Deshabilitar login root por SSH
+[FAIL] SSH-002: Deshabilitar autenticación por password
+  → Remediation: Editar /etc/ssh/sshd_config y establecer 'PasswordAuthentication no'
+[FAIL] SSH-003: Puerto SSH personalizado (no 22)
+  → Remediation: Cambiar el puerto SSH en /etc/ssh/sshd_config a uno no estándar
+[FAIL] SSH-004: Protocolo SSH 2 solamente
+  → Remediation: Establecer 'Protocol 2' en /etc/ssh/sshd_config
+[PASS] FILE-001: Permisos correctos en shadow
+[PASS] FILE-002: Permisos correctos en passwd
+[PASS] FILE-003: Permisos correctos en sudoers
+[FAIL] KERN-001: Protección contra IP spoofing
+  → Remediation: Añadir 'net.ipv4.conf.all.rp_filter=1' a /etc/sysctl.conf
+[PASS] KERN-002: Ignorar pings ICMP redirects
+[PASS] KERN-003: Protección contra SYN flood
+[PASS] USER-001: Usuarios sin contraseña
+[PASS] USER-002: UID duplicados
+[PASS] SERV-001: Servicios innecesarios (telnet)
+[PASS] SERV-002: Servicios innecesarios (rlogin)
+
+======================================================================
+END OF REPORT
+======================================================================
